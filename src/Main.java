@@ -13,6 +13,7 @@ class Foo { //구조를 만든다 class {}안에는 멤버변수와 메서드만
 
     }
   }
+  // main()는 같은 파일에서는 하나만 존재해야한다.
 
 //  public static void main(String[] args) {
 //    Foo foo = new Foo(); //메인 메서드에서 클래스 Foo를 당겨와서 foo로 인스턴스를 함
