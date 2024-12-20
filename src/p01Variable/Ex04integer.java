@@ -1,5 +1,7 @@
 package p01Variable;
 
+import static common.Util.*;
+
 public class Ex04integer {
   byte b1;  //0, 1byte
   short s1; //0, 2byte
@@ -15,7 +17,8 @@ public class Ex04integer {
     System.out.println(e4.l1);
     e4.l1 = 1_000_000_000_000_000l; //int 보다 큰숫자뒤에는 L,l
     System.out.println(e4.l1);
-    
+    typeof(e4);
+
 
     System.out.println(Byte.MIN_VALUE);
     System.out.println(Byte.MAX_VALUE);
