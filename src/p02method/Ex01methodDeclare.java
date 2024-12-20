@@ -1,8 +1,5 @@
 package p02method;
 
-import p01Variable.Ex04integer;
-
-import static common.Util.typeof;
 
 public class Ex01methodDeclare {
 
