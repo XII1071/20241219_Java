@@ -15,7 +15,7 @@ public class Ex04integer {
     System.out.println(e4.s1);
     System.out.println(e4.i1);
     System.out.println(e4.l1);
-    e4.l1 = 1_000_000_000_000_000l; //int 보다 큰숫자뒤에는 L,l
+    e4.l1 = 1_000_000_000_000_000L; //int 보다 큰숫자뒤에는 L,l
     System.out.println(e4.l1);
     typeof(e4);
 
