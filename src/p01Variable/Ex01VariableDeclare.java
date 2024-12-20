@@ -2,7 +2,8 @@ package p01Variable;
 
 public class Ex01VariableDeclare {
   //  int num; // 재선언이 안됨
-  static int num; //  -> 1-1
+  static int num; //전역변수
+  //  -> 1-1
   String name;
 
   // 변수의 재선언이 안됨.
