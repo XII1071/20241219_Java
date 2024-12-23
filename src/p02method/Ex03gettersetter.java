@@ -44,3 +44,4 @@ class Employee {
     this.birthDay = birthDay;
   }
 }
+// 생성자 리턴타입없음
