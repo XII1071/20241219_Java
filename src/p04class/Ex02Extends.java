@@ -1,6 +1,7 @@
+
 package p04class;
 
-public class Ex01Extends {
+public class Ex02Extends {
   public static void main(String[] args) {
     Marine marine = new Marine();
 //    marine.tribe = "Terran";
@@ -25,15 +26,15 @@ public class Ex01Extends {
 }
 
 class Unit {
+  int hp;
+  String tribe;
+  String name;
+
   public Unit(String tribe, int hp, String name) {
     this.tribe = tribe;
     this.hp = hp;
     this.name = name;
   }
-
-  int hp;
-  String tribe;
-  String name;
 
   void move() {
   }
@@ -51,8 +52,7 @@ class Unit {
 
 class Terran extends Unit {
   public Terran(int hp, String name) {
-    super("테란", hp, name);
-    // super(): 자기자신 생성자 this()는 같이 사용 안됨.
+    super("테란", hp, name); // super()와 this()는 같이 사용 안됨.
   }
 }
 
