@@ -11,7 +11,10 @@ public class Ex08static {
     northDoor.color = "blue";
     southDoor.color = "green";
     Door.key = "1234";
-
+    System.out.println(eastDoor);
+    System.out.println(westDoor);
+    System.out.println(northDoor);
+    System.out.println(southDoor);
   }
 }
 

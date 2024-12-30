@@ -1,4 +1,3 @@
-
 package p04class;
 
 public class Ex02Extends {
@@ -53,6 +52,9 @@ class Unit {
 class Terran extends Unit {
   public Terran(int hp, String name) {
     super("테란", hp, name); // super()와 this()는 같이 사용 안됨.
+    tribe = "테란";
+    super.hp = hp;
+    super.name = name;//위와 동일한 표현
   }
 }
 
