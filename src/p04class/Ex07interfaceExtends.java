@@ -1,6 +1,6 @@
 package p04class;
 
-public class Ex07InterfaceExtends implements ITriathlon {
+public class Ex07interfaceExtends implements ITriathlon {
   @Override
   public void play() {
     ITriathlon.super.play();
@@ -22,7 +22,7 @@ public class Ex07InterfaceExtends implements ITriathlon {
   }
 
   public static void main(String[] args) {
-    Ex07InterfaceExtends player = new Ex07InterfaceExtends();
+    Ex07interfaceExtends player = new Ex07interfaceExtends();
     player.play();
   }
 }

@@ -1,6 +1,6 @@
 package p04class;
 
-public class Ex06Interface {
+public class Ex06interface {
   public static void main(String[] args) {
 
   }
