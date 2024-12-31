@@ -1,6 +1,6 @@
 package p04class;
 
-public class Ex09FunctionalInterface {
+public class Ex09FunctionalInterface람다 {
   public static void main(String[] args) {
     CustomClass customClass = new CustomClass();
 
@@ -22,6 +22,47 @@ public class Ex09FunctionalInterface {
         System.out.println("myCall");
       }
     };
+    MyInterface myInterface = new MyInterface() {
+      @Override
+      public void doIt() {
+        System.out.println("doIt");
+      }
+    };
+    //lambda 식으로 축약
+    MyInterface myInterface2 = () -> {
+      System.out.println("doIt");
+    };
+    MyInterface myInterface3 = () -> System.out.println("doIt");
+    // js 처럼 명령이 하나 있을 시 중괄호 생략가능.
+
+    MySqrt mySqrt = new MySqrt() {
+      @Override
+      public int mySqrt(int a) {
+        return a * a;
+      }
+    };
+    mySqrt = (int a) -> {
+      return a * a;
+    };
+    mySqrt = (a) -> {
+      return a * a;
+    };
+    mySqrt = a -> {
+      return a * a;
+    };
+    mySqrt = a -> a * a; // 본체에 실행문이 아닌 값만 있는 경우는 return이 생략이된것이다.
+
+    MyMax myMax = new MyMax() {
+      @Override
+      public int myMax(int a, int b) {
+        return (a > b ? a : b);
+      }
+    };
+    myMax = (a, b) -> {
+      return a > b ? a : b;
+    };
+    myMax = (int a, int b) -> a > b ? a : b;
+    myMax = (a, b) -> a > b ? a : b;
   }
 }
 
@@ -54,4 +95,21 @@ class CustomClass implements CustomInterface {
   public void interfaceMethod2() {
     System.out.println("interfaceMethod2");
   }
+
 }
+
+@FunctionalInterface
+interface MyInterface {
+  void doIt();
+}
+
+@FunctionalInterface
+interface MySqrt {
+  int mySqrt(int a);
+}
+
+@FunctionalInterface
+interface MyMax {
+  int myMax(int a, int b);
+}
+
