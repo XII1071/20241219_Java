@@ -53,7 +53,7 @@ class Shield {
   }
 }
 
-// interface에는 상수와 추상메서드만 정의
+// interface에는 상수와 추상메서드만 정의, 스스로 인스턴스를 생성하지 못함.
 interface Attackable {
   public static final int LEVEL = 10;
 
