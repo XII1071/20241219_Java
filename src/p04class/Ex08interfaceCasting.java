@@ -3,6 +3,8 @@ package p04class;
 public class Ex08interfaceCasting {
   public static void main(String[] args) {
 
+    //Polymorphism(다형성) = 상속 + interface
+
     // 상속 :: 수직적인 관계를 형변환
     mammals[] mammalsArr = {new Elephant(), new Cat(), new Bat()};
     Birds[] BirdsArr = {new Eagle(), new Owl(), new Duck()};
