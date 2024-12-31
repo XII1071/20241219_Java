@@ -1,6 +1,6 @@
 package p04class;
 
-public class Ex09AbstractClass {
+public class Ex10AbstractClass {
   public static void main(String[] args) {
     Rice rice = new Rice();
     // Item item = new Item();
