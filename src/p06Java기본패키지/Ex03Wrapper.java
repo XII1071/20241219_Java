@@ -10,8 +10,8 @@ public class Ex03Wrapper {
     System.out.println(((Object) integer).getClass().getSimpleName());
     int i1 = (int) obj; //unboxing: 참조형 -> 기본형
     int i2 = integer;  // 참조형 -> 기본형
-    int n1 = Integer.parseInt("123"); //문자열을 int로 형변환
-    int n2 = Integer.valueOf("123");  //문자열을 Integer로 형변환
+    int n1 = Integer.parseInt("123"); //문자열을 int(기본형) 형변환
+    int n2 = Integer.valueOf("123");  //문자열을 Integer(참조형) 형변환
     System.out.println(n2);
     Integer integer2 = (Integer) 1000;
 
