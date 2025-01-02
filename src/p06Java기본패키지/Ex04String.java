@@ -40,7 +40,7 @@ public class Ex04String {
     System.out.println(str.startsWith("h"));
     System.out.println(str.endsWith("o"));
     System.out.println(str.indexOf("ll"));  //글자의 위치를 반영
-//    common.Util.typeOf((Object) "hello world");
+    //  common.Util.typeOf((Object) "hello world");
     System.out.println("hello world".indexOf("l", 5));
     System.out.println("hello world".lastIndexOf("l"));
 
