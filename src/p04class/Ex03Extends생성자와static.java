@@ -5,7 +5,7 @@ public class Ex03Extends생성자와static {
   public static void main(String[] args) {
     Parent parent = new Parent();
     Child child = new Child("일동");
-    Child child2 = new Child("이동");
+    Child child2 = new Child(" 이동");
     Child child3 = new Child("삼동");
 
     System.out.println(parent);

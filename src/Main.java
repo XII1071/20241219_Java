@@ -2,7 +2,7 @@
 //int tot =10;
 //void eat(){} 잘못된 선언
 
-import p04class.Ex10Modifier;
+import p04class.Ex11Modifier;
 
 class Foo { //구조를 만든다 class {}안에는 멤버변수와 메서드만 가능합니다
   String name; //멤버 변수 (속성)
@@ -27,13 +27,13 @@ class Foo { //구조를 만든다 class {}안에는 멤버변수와 메서드만
 // public 붙은 클래스는 반드시 파일명과 일치! 단 하나의 class에만 붙일 수 있음
 public class Main {
   public static void main(String[] args) {
-    Ex10Modifier ex = new Ex10Modifier();
+    Ex11Modifier ex = new Ex11Modifier();
     ex.publicVar = 100;
     ex.publicMethod();
 
   }
 
-  class ExTemp extends Ex10Modifier {
+  class ExTemp extends Ex11Modifier {
     @Override
     protected void protectedMethod() {
       super.protectedMethod();
