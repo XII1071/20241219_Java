@@ -1,4 +1,4 @@
-package P05Exception;
+package p05Exception;
 
 public class Ex01trycatch {
   public static void main(String[] args) {

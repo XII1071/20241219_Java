@@ -1,4 +1,4 @@
-package P05Exception;
+package p05Exception;
 
 public class Ex02throws {
   public static void main(String[] args) throws Exception {
