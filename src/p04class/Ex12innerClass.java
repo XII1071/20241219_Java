@@ -69,3 +69,6 @@ class Outer {
     void innerInterfaceMethod();
   }
 }
+
+
+
