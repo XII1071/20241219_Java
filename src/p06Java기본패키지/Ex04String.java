@@ -9,6 +9,7 @@ public class Ex04String {
     String str1 = new String("hello");
     String str2 = "hello";
     String str3 = String.valueOf("hello");
+    System.out.println(String.format("%s %s %s %s", str, str1, str2, str3));
     System.out.println(str == str1);
     System.out.println(str == str2);
     System.out.println("str == str3: " + (str == str3));
@@ -30,8 +31,9 @@ public class Ex04String {
     System.out.println("str.intern()==str2.intern() :" + (str.intern() == str2.intern()));
 
     for (int i = 0; i < str.length(); i++) {
-      System.out.println(str.charAt(i));
+      System.out.print(str.charAt(i)); // charAt : 문자열에 한글자씩 접근
     }
+    System.out.println();
     System.out.println(str.compareTo("Hello"));
     System.out.println(str.compareTo("world"));
     System.out.println(str.concat(" world"));
@@ -48,15 +50,15 @@ public class Ex04String {
     System.out.println(str.replace("o", ""));
     System.out.println(str.replaceFirst("l", "o"));
 
-    String[] arr = "I am a boy".split(" ");
+    String[] arr = "I am a boy".split("c:/workspace/spaceJava");
     System.out.println(Arrays.toString(arr));
 
     String name = "index.abc.html";
     System.out.println(name.substring(name.lastIndexOf(".") + 1));
     System.out.println(name.substring(name.indexOf(".") + 1, name.lastIndexOf(".")));
     System.out.println(name.substring(6, 9));
-    System.out.println(str.toUpperCase());
-    System.out.println(str.toUpperCase().toLowerCase());
+    System.out.println(str.toUpperCase()); //toUpperCase :: 대문자 변환
+    System.out.println(str.toUpperCase().toLowerCase()); //toUpperCase :: 대문자 변환
     System.out.println("    blan    k    ".trim().replace(" ", ""));
     System.out.println(String.valueOf(1));
     System.out.println(String.valueOf(0b10));
