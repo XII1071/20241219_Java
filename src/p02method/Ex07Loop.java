@@ -3,10 +3,14 @@ package p02method;
 import common.Util;
 
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ex07Loop {
   public static void main(String[] args) {
+    /*
     for (int i = 10; i > 0; i--) {
       System.out.println(i);
       try {
@@ -56,22 +60,43 @@ public class Ex07Loop {
       int you = (int) (Math.random() * 3);
       System.out.println("당신의 패를 입력(0:가위,1:바위,2:보");
       String me = scan.next();
-      if (Integer.parseInt(me) < 0 && Integer.parseInt(me) > 2) break;
+      if(Integer.parseInt(me)<0 && Integer.parseInt(me)>2) break;
 
       int result = you - Integer.parseInt(me);
       switch (result) {
         case 0:
-          System.out.println("비겼다");
-          break;
-        case -1:
-        case 2:
-          System.out.println("졌다");
-          break;
+          System.out.println("비겼다");break;
+        case -1: case 2:
+          System.out.println("졌다");break;
         default:
-          System.out.println("이겼다");
-          break;
+          System.out.println("이겼다");break;
       }
     }
     System.out.println("게임을 종료합니다.");
+    */
+
+    //무한 반복
+    int[] lotto = new int[6];
+    int idx = 0;
+    for (; ; ) {
+      int ball = (int) (Math.random() * 45) + 1;
+
+      // 중복 체크 구문
+      boolean check = false;
+      for (int i = 0; i < lotto.length; i++) {
+        if (ball == lotto[i]) {
+          check = true;
+          break;
+        }
+      }
+
+      //중복이 없을 경우 추가하는 구문
+      if (!check) {
+        lotto[idx] = ball;
+        idx++;
+        if (idx == 6) break;
+      }
+    }
+    System.out.println(Arrays.toString(lotto));
   }
 }
