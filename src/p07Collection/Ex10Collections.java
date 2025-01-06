@@ -1,9 +1,6 @@
 package p07Collection;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Ex10Collections {
   public static void main(String[] args) {
@@ -17,6 +14,24 @@ public class Ex10Collections {
     for (TheRich rich : list) {
       System.out.println(rich);
     }
+    System.out.println();
+    Collections.sort(list, new SortingInfo());
+    for (TheRich rich : list) System.out.println(rich);
+  }
+}
+
+class SortingInfo implements Comparator {
+  @Override
+  public int compare(Object o1, Object o2) {
+    if (o1 instanceof TheRich && o2 instanceof TheRich) {
+      TheRich r1 = (TheRich) o1; // 자부자
+      TheRich r2 = (TheRich) o2;
+      int result = r1.no - r2.no; // 오름차순
+      if (result == 0)
+        return r1.getAsset() - r2.getAsset() * -1; // 내림차순
+      return result;
+    }
+    return -1;
   }
 }
 
