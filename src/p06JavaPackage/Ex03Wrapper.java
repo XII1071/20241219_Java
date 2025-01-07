@@ -1,4 +1,4 @@
-package p06Java기본패키지;
+package p06JavaPackage;
 
 public class Ex03Wrapper {
   public static void main(String[] args) {

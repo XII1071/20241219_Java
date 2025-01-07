@@ -1,4 +1,4 @@
-package p06Java기본패키지;
+package p06JavaPackage;
 
 import java.util.Arrays;
 import java.util.StringJoiner;
