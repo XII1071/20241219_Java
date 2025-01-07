@@ -1,10 +1,7 @@
 package p06JavaPackage;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.YearMonth;
+import java.time.*;
 import java.time.chrono.JapaneseDate;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
@@ -98,7 +95,33 @@ public class Ex07TimePackage {
     System.out.println(ld.equals(jdt)); //false 연대가 다름.
     System.out.println(ld.isEqual(jdt)); // true 오직 날짜만 비교
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd E a hh:mm:ss");
-    System.out.println(sdf.format(new Date()));
+    // java.util.Date => LocalDate
+    LocalDate ld5 =
+        new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+    // java.util.Date => LocalDateTime
+    LocalDateTime ldt5 =
+        new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+    //LocalDate => java.util.Date
+    Date d1 = java.sql.Date.valueOf(ld);
+
+    //LocalDateTime => java.util.Date
+    Date d2 = java.sql.Timestamp.valueOf(ldt);
+
+    //java.sql.Date => java.util.Date
+    Date d3 = new java.sql.Date(new Date().getTime());
+
+    SimpleDateFormat sdf =
+        new SimpleDateFormat("yyyy-MM-dd E a hh:mm:ss");
+    System.out.println(sdf.format(
+        new Date()));
+    System.out.println(sdf.format(
+        java.sql.Date.valueOf(LocalDate.now())));//날짜만!
+
+    System.out.println(LocalDateTime.now());
+    System.out.println(sdf.format(
+        java.sql.Timestamp.valueOf(LocalDateTime.now())));
+
   }
 }

@@ -1,6 +1,6 @@
 package p04class;
 
-public class Ex09FunctionalInterface람다 {
+public class Ex09FunctionalInterfaceLambda {
   public static void main(String[] args) {
     CustomClass customClass = new CustomClass();
 
