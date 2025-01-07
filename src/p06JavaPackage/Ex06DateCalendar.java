@@ -19,13 +19,22 @@ public class Ex06DateCalendar {
 
     Calendar c = Calendar.getInstance();
     System.out.println(c.get(Calendar.YEAR));
-    System.out.println(c.get(Calendar.YEAR));
     System.out.println(c.get(Calendar.MONTH));
     System.out.println(c.get(Calendar.DATE));
     String[] weeks = ",일,월,화,수,목,금,토".split(",");
     System.out.println(weeks[c.get(Calendar.DAY_OF_WEEK)]);
     System.out.println(c.get(Calendar.HOUR)); //12시간제
     System.out.println(c.get(Calendar.HOUR_OF_DAY));//24시간제
+    c.set(2024, 11, 1); //날짜 지정 가능.
+
+    // Date => Calendar
+    Date d = new Date();
+    Calendar c1 = Calendar.getInstance();
+    c1.setTime(d);
+
+    // Calendar => Date
+    Date d2 = new Date(Calendar.getInstance().getTimeInMillis());
+
   }
 
   static String getDate(Date date) {
