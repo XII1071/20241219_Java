@@ -31,9 +31,11 @@ public class Ex09FunctionPackage {
       }
     };
     consumer = integer -> {
-      System.out.println(integer + " ");
+      System.out.print(integer + " ");
     };
-    consumer = integer -> System.out.println(integer + " ");
+    consumer = integer -> System.out.print(integer + " ");
+
+    Consumer<Boolean> consumer1 = b -> System.out.print(b + " ");
 
     // 3. 매개변수 O, 리턴타입 O
     Function<Integer, Integer> function = new Function<Integer, Integer>() {
@@ -43,6 +45,13 @@ public class Ex09FunctionPackage {
       }
     };
     function = i -> i * 10;
+
+    Function<Integer, Boolean> function1 = new Function<Integer, Boolean>() {
+      @Override
+      public Boolean apply(Integer i) {
+        return i % 2 == 0 ? true : false;
+      }
+    };
 
     // 4. 매개변수 O, 리턴타입 O(boolean)
     Predicate<Integer> predicate = new Predicate<Integer>() {
@@ -55,18 +64,34 @@ public class Ex09FunctionPackage {
 
     // 응용
     List<Integer> list = new ArrayList<>();
+
     makeRandomList(list, supplier);
     printList(list, consumer);
+    printEven(list, consumer, predicate);
+    printList(doSomething(list, function1), consumer1);
+    printList(doSomething(list, function), consumer);
   }
 
+  // 메서드 리턴타입 앞의 <T>는 매개변수의 T를 결정
   static <T> void makeRandomList(List<T> list, Supplier<T> supplier) {
     for (int i = 0; i < 10; i++) {
       list.add(supplier.get());
     }
   }
 
-  private static void printList(List<Integer> list, Consumer<Integer> consumer) {
-
+  private static <T> void printList(List<T> list, Consumer<T> consumer) {
+    for (int i = 0; i < list.size(); i++) consumer.accept(list.get(i));
+    System.out.println();
   }
 
+  private static <T> void printEven(List<T> list, Consumer<T> consumer, Predicate<T> predicate) {
+    for (T i : list) if (predicate.test(i)) consumer.accept(i);
+    System.out.println();
+  }
+
+  private static <T, R> List<R> doSomething(List<T> list, Function<T, R> function) {
+    List<R> tempList = new ArrayList<>(list.size());
+    for (T item : list) tempList.add(function.apply(item));
+    return tempList;
+  }
 }
