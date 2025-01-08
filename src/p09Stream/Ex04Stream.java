@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class Ex04Stream {
   public static void main(String[] args) {
     Student[] students = {
-        new Student("감자바", 3, 300),
+        new Student("핫바", 3, 300),
         new Student("이자바", 3, 200),
         new Student("박자바", 2, 200),
         new Student("정자바", 2, 200),
