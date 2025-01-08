@@ -1,10 +1,7 @@
 package p09Stream;
 
 import java.util.*;
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Stream;
 
 public class Ex01ArrayStream {
@@ -70,14 +67,25 @@ public class Ex01ArrayStream {
         }
       }.get());
 
-      list.add((new Function<Integer, Integer>() {
-        @Override
-        public Integer apply(Integer integer) {
-          return integer;
-        }
-      }).apply(i));
+//      list.add((new Function<Integer, Integer>() {
+//        @Override
+//        public Integer apply(Integer integer) {
+//          return integer;
+//        }
+//      }).apply(i));
 
     }
+    System.out.println(">> " + list);
+    list.removeIf(i -> i % 2 == 0);
+    System.out.println(">> " + list);
+    list.replaceAll(new UnaryOperator<Integer>() {
+      @Override
+      public Integer apply(Integer i) {
+        return i * i;
+      }
+    });
+    System.out.println(">> " + list);
+
 
     Map<String, String> map = new HashMap<>();
     map.put("a", "1");
