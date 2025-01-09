@@ -138,7 +138,7 @@ class InfoDialog extends JDialog {
     super(fr, modal);
 
     add(lbImg, "South");
-//    add(lbTxt, "Center");
+    add(lbTxt, "Center");
 
     setTitle("정보");
     setLocationRelativeTo(this);
