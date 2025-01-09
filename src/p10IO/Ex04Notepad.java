@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 
+
+/* 메모장을 만들자! */
 public class Ex04Notepad {
   public static void main(String[] args) {
     new Notepad();
@@ -56,7 +58,9 @@ class Notepad extends JFrame {
       @Override
       public void actionPerformed(ActionEvent e) {
         int ret = fc.showOpenDialog(miOpen);
+        // miOpen만 하면 값 정의가 애매하게 잡혀 int추가
         if (ret == 0) {
+          // 중간에 창 캔슬 해도 에러 안뜸
           String selectedFile = fc.getSelectedFile().toString();
           try (FileReader fr = new FileReader(selectedFile);) {
             ta.setText(""); // 열기전 창 내용 비우기
@@ -97,11 +101,13 @@ class Notepad extends JFrame {
     menuBar.add(menuV);
     menuBar.add(menuH);
     setJMenuBar(menuBar);
+    // 추가다하고 setMenuBar 추가
 
     add(sp);
     setTitle("메모장");
     setSize(500, 300);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    // JFrame 를 닫게해줌
     setLocationRelativeTo(this);
     setVisible(true);
   }
