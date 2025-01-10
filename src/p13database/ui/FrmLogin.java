@@ -30,10 +30,11 @@ public class FrmLogin extends FrmBasic {
     pfPass.setFont(new Font("consolas", Font.PLAIN, 16));
     btnLogin = new JButton("Login");
     btnJoin = new JButton("Join");
-    btnJoin.addActionListener(e -> {
+    
+    btnLogin.addActionListener(e -> {
 
     });
-    btnLogin.addActionListener(e -> {
+    btnJoin.addActionListener(e -> {
       new FrmJoin();
       dispose();
     });
