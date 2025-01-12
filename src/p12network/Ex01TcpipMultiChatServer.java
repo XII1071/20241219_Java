@@ -21,13 +21,16 @@ public class Ex01TcpipMultiChatServer {
     Socket socket = null;
 
     try {
+      // 처음 입장하면 in으로 처음받는 메시지가 이름임.
       serverSocket = new ServerSocket(7777);
       System.out.println("Server started...");
 
       while (true) {
+        // 누군가 접속을 하게 되면 접속을 하게 되면 soket을 생성하고
         socket = serverSocket.accept();
         System.out.println("Connected from ["
             + socket.getInetAddress() + ":" + socket.getPort() + "]");
+        // 사용자당 각각의 thread를 생성
         ServerReceiver thread = new ServerReceiver(socket);
         thread.start();
       }
@@ -36,6 +39,7 @@ public class Ex01TcpipMultiChatServer {
     }
   } // start()
 
+  // 메세지가 보낼 때 모두에게 보내줄 때 호출
   void sendToAll(String msg) {
     Iterator it = clients.keySet().iterator();
 
@@ -55,6 +59,7 @@ public class Ex01TcpipMultiChatServer {
     DataOutputStream out;
 
     ServerReceiver(Socket socket) {
+      // severReceiver
       this.socket = socket;
       try {
         in = new DataInputStream(socket.getInputStream());
@@ -71,13 +76,14 @@ public class Ex01TcpipMultiChatServer {
 
         clients.put(name, out);
         System.out.println("현재 접속자수: " + clients.size());
+        // 사용자가 계속적으로 메시지를 보낼 수 있기에 보낼 때 모두에게 전송
         while (in != null) {
           sendToAll(in.readUTF());
         }
       } catch (IOException e) {
         // ignore
       } finally {
-        sendToAll("#" + name + " is disconnected");
+        sendToAll("#" + name + " 님이 나가셨습니다.");
         clients.remove(name);
         System.out.println("Terminated from [" + socket.getInetAddress() + ":" + socket.getPort() + "]");
         System.out.println("현재 접속자수: " + clients.size());
