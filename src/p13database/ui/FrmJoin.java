@@ -1,7 +1,12 @@
 package p13database.ui;
 
+import p13database.dao.DAOMember;
+import p13database.vo.MemberVO;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class FrmJoin extends FrmBasic {
 
@@ -37,6 +42,43 @@ public class FrmJoin extends FrmBasic {
       labels[i].setFont(new Font("맑은 고딕", Font.PLAIN, 18));
       labels[i].setPreferredSize(new Dimension(80, 20));
     }
+    btnJoin.addActionListener(e -> {
+      //유효성 검사
+      String id = tfId.getText();
+      String pass = new String(pfPass.getPassword());
+      String name = tfName.getText();
+      String mobile = tfMobile.getText();
+      if (id.equals("")) {
+        JOptionPane.showMessageDialog(null, "ID를 확인하세요");
+        tfId.requestFocus();
+        return;
+      }
+      if (pass.equals("")) {
+        JOptionPane.showMessageDialog(null, "Password를 확인하세요");
+        pfPass.requestFocus();
+        return;
+      }
+      if (name.equals("")) {
+        JOptionPane.showMessageDialog(null, "이름을 확인하세요");
+        tfName.requestFocus();
+        return;
+      }
+      if (mobile.equals("")) {
+        JOptionPane.showMessageDialog(null, "Mobile을 확인하세요");
+        tfMobile.requestFocus();
+        return;
+      }
+      boolean result = new DAOMember().insertMembers(
+          new MemberVO(0L, id, pass, name, mobile));
+      if(result) {
+        JOptionPane.showMessageDialog(null, "등록되었습니다.");
+        tfId.setText("");pfPass.setText("");tfName.setText("");tfMobile.setText("");
+      }
+    });
+    btnCancel.addActionListener(e -> {
+      dispose();
+      new FrmLogin();
+    });
   }
 
   @Override

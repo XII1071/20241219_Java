@@ -14,7 +14,6 @@ public class DAOSet {
     conn = DriverManager.getConnection(driver, user, pass);
     return conn;
   }
-
   public void closeDB() {
     try {
       if (rs != null) rs.close();

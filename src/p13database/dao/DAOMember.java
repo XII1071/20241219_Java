@@ -11,8 +11,13 @@ import java.sql.SQLException;
     mobile varchar2(20));
 
     create sequence sq_members;
+
+    insert into members(mno, id, pass,name, mobile)
+    values(sq_members.nextval, 'admin', '1', '관리자', '010-1111-1111');
 */
 public class DAOMember extends DAOSet {
+
+  // 1. login 진행시 회원정보(MemberVO)를 가져오는 메서드
   public MemberVO loginCheck(String id, String pass) {
     MemberVO memberVO = null;
     try {
@@ -32,5 +37,27 @@ public class DAOMember extends DAOSet {
       closeDB();
     }
     return memberVO;
+  }
+
+  public boolean insertMembers(MemberVO memberVO) {
+    boolean result = false;
+    try {
+      conn = getConn();
+
+      String sql = "insert into members(mno,id, pass, name, mobile) "
+          + "VALUES(sq_members.nextval, ?, ?, ?, ?) ";
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setString(1, memberVO.getId());
+      pstmt.setString(2, memberVO.getPass());
+      pstmt.setString(3, memberVO.getName());
+      pstmt.setString(4, memberVO.getMobile());
+      int cnt = pstmt.executeUpdate(); //insert되는 행의 수만큼 리턴
+      if (cnt > 0) result = true;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      closeDB();
+    }
+    return result;
   }
 }

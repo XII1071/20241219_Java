@@ -1,4 +1,3 @@
-
 package p13database.dao;
 
 import java.sql.Connection;
@@ -10,7 +9,7 @@ public class DAOSetTest {
     try {
       Class.forName("oracle.jdbc.driver.OracleDriver");
       Connection conn = daoSet.getConn();
-      System.out.println(conn.isClosed() ? "접속종료" : "접속중");
+      System.out.println(conn.isClosed()?"접속종료":"접속중");
     } catch (ClassNotFoundException | SQLException e) {
       throw new RuntimeException(e);
     } finally {
