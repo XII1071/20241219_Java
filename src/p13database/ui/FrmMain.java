@@ -13,7 +13,7 @@ public class FrmMain extends FrmBasic {
   private DefaultTableModel tableModel;
   private JScrollPane scp;
   private JLabel lb;
-  private JButton btnModify, btnDelete;
+  private JButton btnModify, btnDelete, btnBack;
   private JPanel pnlSouth;
 
   public FrmMain() throws HeadlessException {
@@ -44,7 +44,30 @@ public class FrmMain extends FrmBasic {
     );
     btnModify = new JButton("수정");
     btnDelete = new JButton("삭제");
+    btnBack = new JButton("Back");
     pnlSouth = new JPanel();
+    btnBack.addActionListener(e -> {
+      dispose();
+      new FrmLogin();
+    });
+    btnDelete.addActionListener(e -> {
+      int selectedRow = tbl.getSelectedRow();
+      if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
+        return;
+      }
+      int choice = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "삭제 선택",
+          JOptionPane.YES_NO_OPTION); // yes 0, no 1
+      if (choice == 0) {
+        int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
+        boolean done = new DAOMember().deleteMembers(mno);
+        if (done) {
+          JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+        } else {
+          JOptionPane.showMessageDialog(null, "삭제가 안되었습니다.");
+        }
+      }
+    });
   }
 
   @Override
@@ -53,6 +76,7 @@ public class FrmMain extends FrmBasic {
     add(scp, "Center");
     pnlSouth.add(btnModify);
     pnlSouth.add(btnDelete);
+    pnlSouth.add(btnBack);
     add(pnlSouth, "South");
   }
 

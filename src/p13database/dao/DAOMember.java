@@ -93,4 +93,11 @@ public class DAOMember extends DAOSet {
     }
     return result;
   }
+
+  public boolean deleteMembers(long mno) {
+    boolean result = false;
+
+
+    return result;
+  }
 }
