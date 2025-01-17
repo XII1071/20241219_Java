@@ -97,6 +97,31 @@ public class DAOMember extends DAOSet {
   public boolean deleteMembers(long mno) {
     boolean result = false;
 
+    try {
+      conn = getConn();
+
+      String sql = "delete from  ?";
+      pstmt = conn.prepareStatement(sql);
+      pstmt.setLong(1, mno);
+      int cnt = pstmt.executeUpdate(); //insert되는 행의 수만큼 리턴
+      if (cnt > 0) result = true;
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    } finally {
+      closeDB();
+    }
+
+    return result;
+  }
+
+  public MemberVO getMember(int mno) {
+    MemberVO result = null;
+
+    return result;
+  }
+
+  public boolean updateMembers(MemberVO memberVO) {
+    boolean result = false;
 
     return result;
   }

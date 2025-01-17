@@ -68,6 +68,16 @@ public class FrmMain extends FrmBasic {
         }
       }
     });
+    btnModify.addActionListener(e -> {
+      int selectedRow = tbl.getSelectedRow();
+      if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
+        return;
+      }
+      int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
+      new FrmModify(mno);
+
+    });
   }
 
   @Override
