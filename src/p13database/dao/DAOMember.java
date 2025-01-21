@@ -19,11 +19,11 @@ public class DAOMember extends DAOSet {
       rs = pstmt.executeQuery();
       if (rs.next()) {
         memberVO = new MemberVO(
-                rs.getLong("mno"),
-                rs.getString("id"),
-                rs.getString("pass"),
-                rs.getString("name"),
-                rs.getString("mobile")
+            rs.getLong("mno"),
+            rs.getString("id"),
+            rs.getString("pass"),
+            rs.getString("name"),
+            rs.getString("mobile")
         );
       }
     } catch (SQLException e) {
@@ -41,7 +41,7 @@ public class DAOMember extends DAOSet {
       conn = getConn();
 
       String sql = "INSERT INTO members (mno, id, pass, name, mobile) "
-              + "VALUES (sq_members.nextval, ?, ?, ?, ?)";
+          + "VALUES (sq_members.nextval, ?, ?, ?, ?)";
       pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, memberVO.getId());
       pstmt.setString(2, memberVO.getPass());
@@ -68,11 +68,11 @@ public class DAOMember extends DAOSet {
       rs = pstmt.executeQuery();
       while (rs.next()) {
         MemberVO memberVO = new MemberVO(
-                rs.getLong("mno"),
-                rs.getString("id"),
-                rs.getString("pass"),
-                rs.getString("name"),
-                rs.getString("mobile")
+            rs.getLong("mno"),
+            rs.getString("id"),
+            rs.getString("pass"),
+            rs.getString("name"),
+            rs.getString("mobile")
         );
         result.add(memberVO);
       }
@@ -115,11 +115,11 @@ public class DAOMember extends DAOSet {
       rs = pstmt.executeQuery();
       if (rs.next()) {
         result = new MemberVO(
-                rs.getLong("mno"),
-                rs.getString("id"),
-                rs.getString("pass"),
-                rs.getString("name"),
-                rs.getString("mobile")
+            rs.getLong("mno"),
+            rs.getString("id"),
+            rs.getString("pass"),
+            rs.getString("name"),
+            rs.getString("mobile")
         );
       }
     } catch (SQLException e) {

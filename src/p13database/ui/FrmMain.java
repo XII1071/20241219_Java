@@ -13,7 +13,7 @@ public class FrmMain extends FrmBasic {
   private DefaultTableModel tableModel;
   private JScrollPane scp;
   private JLabel lb;
-  private JButton btnModify, btnDelete, btnBack, btnJoin;
+  private JButton btnModify, btnDelete, btnBack;
   private JPanel pnlSouth;
 
   public FrmMain() throws HeadlessException {
@@ -25,7 +25,7 @@ public class FrmMain extends FrmBasic {
     tableModel.setRowCount(0);
     for (MemberVO m : list) {
       tableModel.addRow(new String[]{
-              String.valueOf(m.getMno()), m.getName(), m.getId(), m.getPass(), m.getMobile()
+          String.valueOf(m.getMno()), m.getName(), m.getId(), m.getPass(), m.getMobile()
       });
     }
     tbl.setModel(tableModel);
@@ -38,7 +38,7 @@ public class FrmMain extends FrmBasic {
     lb.setHorizontalAlignment(JLabel.CENTER);
 
     tableModel = new DefaultTableModel(
-            new String[]{"회원번호", "이름", "ID", "Password", "Mobile"}, 0
+        new String[]{"회원번호", "이름", "ID", "Password", "Mobile"}, 0
     );
     tbl = new JTable(tableModel);
     scp = new JScrollPane(tbl);
@@ -46,7 +46,6 @@ public class FrmMain extends FrmBasic {
     btnModify = new JButton("수정");
     btnDelete = new JButton("삭제");
     btnBack = new JButton("Back");
-    btnJoin = new JButton("회원 추가");
 
     pnlSouth = new JPanel();
 
@@ -58,7 +57,7 @@ public class FrmMain extends FrmBasic {
 
     btnDelete.addActionListener(e -> deleteMember());
     btnModify.addActionListener(e -> modifyMember());
-    btnJoin.addActionListener(e -> addMember());
+
   }
 
   private void deleteMember() {
@@ -69,7 +68,7 @@ public class FrmMain extends FrmBasic {
     }
 
     int choice = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "삭제 선택",
-            JOptionPane.YES_NO_OPTION);
+        JOptionPane.YES_NO_OPTION);
 
     if (choice == JOptionPane.YES_OPTION) {
       int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
@@ -106,7 +105,6 @@ public class FrmMain extends FrmBasic {
 
     pnlSouth.add(btnModify);
     pnlSouth.add(btnDelete);
-    pnlSouth.add(btnJoin);
     pnlSouth.add(btnBack);
 
     add(pnlSouth, BorderLayout.SOUTH);

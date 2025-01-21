@@ -70,9 +70,12 @@ public class FrmJoin extends FrmBasic {
       }
       boolean result = new DAOMember().insertMembers(
           new MemberVO(0L, id, pass, name, mobile));
-      if(result) {
+      if (result) {
         JOptionPane.showMessageDialog(null, "등록되었습니다.");
-        tfId.setText("");pfPass.setText("");tfName.setText("");tfMobile.setText("");
+        tfId.setText("");
+        pfPass.setText("");
+        tfName.setText("");
+        tfMobile.setText("");
       }
     });
     btnCancel.addActionListener(e -> {

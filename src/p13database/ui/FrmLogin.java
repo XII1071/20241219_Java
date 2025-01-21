@@ -22,14 +22,19 @@ public class FrmLogin extends FrmBasic {
 
   @Override
   public void init() {
-    pnlNorth = new JPanel();pnlCenter = new JPanel();pnlSouth = new JPanel();
-    lbId = new JLabel("ID");lbPass = new JLabel("Pass");
+    pnlNorth = new JPanel();
+    pnlCenter = new JPanel();
+    pnlSouth = new JPanel();
+    lbId = new JLabel("ID");
+    lbPass = new JLabel("Pass");
     lbId.setPreferredSize(new Dimension(50, 20));
     lbPass.setPreferredSize(new Dimension(50, 20));
-    tfId = new JTextField(10);pfPass = new JPasswordField(10);
+    tfId = new JTextField(10);
+    pfPass = new JPasswordField(10);
     tfId.setFont(new Font("Consolas", Font.PLAIN, 16));
     pfPass.setFont(new Font("Consolas", Font.PLAIN, 16));
-    btnLogin = new JButton("Login");btnJoin = new JButton("Join");
+    btnLogin = new JButton("Login");
+    btnJoin = new JButton("Join");
     btnLogin.addActionListener(e -> {
       String id = tfId.getText();
       String pass = new String(pfPass.getPassword());
@@ -59,10 +64,14 @@ public class FrmLogin extends FrmBasic {
 
   @Override
   public void arrange() {
-    pnlNorth.add(lbId);pnlNorth.add(tfId);
-    pnlCenter.add(lbPass); pnlCenter.add(pfPass);
-    pnlSouth.add(btnLogin); pnlSouth.add(btnJoin);
-    add(pnlNorth, "North");add(pnlCenter, "Center");
+    pnlNorth.add(lbId);
+    pnlNorth.add(tfId);
+    pnlCenter.add(lbPass);
+    pnlCenter.add(pfPass);
+    pnlSouth.add(btnLogin);
+    pnlSouth.add(btnJoin);
+    add(pnlNorth, "North");
+    add(pnlCenter, "Center");
     add(pnlSouth, "South");
   }
 
