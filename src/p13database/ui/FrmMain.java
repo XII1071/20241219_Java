@@ -90,7 +90,7 @@ public class FrmMain extends FrmBasic {
     }
 
     int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
-    new FrmModify(mno); // FrmModify 창 열기
+    new FrmModify(mno, this); // FrmModify에 FrmMain 인스턴스 전달
   }
 
   private void addMember() {

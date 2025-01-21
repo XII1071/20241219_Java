@@ -15,10 +15,12 @@ public class FrmModify extends FrmBasic {
   private JLabel[] labels;
   private String[] lbArr;
   private int mno;
+  private FrmMain frmMain; // FrmMain 인스턴스 참조
 
-  public FrmModify(int mno) throws HeadlessException {
+  public FrmModify(int mno, FrmMain frmMain) throws HeadlessException {
     super("회원수정", 270, 210);
     this.mno = mno;
+    this.frmMain = frmMain; // FrmMain 참조 저장
     MemberVO memberVO = new DAOMember().getMember(mno);
     tfId.setText(memberVO.getId());
     pfPass.setText(memberVO.getPass());
@@ -85,16 +87,14 @@ public class FrmModify extends FrmBasic {
 
       if (result) {
         JOptionPane.showMessageDialog(null, "수정되었습니다.");
-        dispose(); // 수정 성공 시 창 닫기
+        frmMain.setTableModel(new DAOMember().getList()); // 테이블 갱신
+        dispose(); // 수정 창 닫기
       } else {
         JOptionPane.showMessageDialog(null, "수정에 실패했습니다.");
       }
     });
 
-    btnCancel.addActionListener(e -> {
-      dispose(); // 취소 버튼 클릭 시 창 닫기
-      new FrmLogin();
-    });
+    btnCancel.addActionListener(e -> dispose());
   }
 
   @Override
