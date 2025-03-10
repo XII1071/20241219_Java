@@ -23,9 +23,10 @@ public class FrmMain extends FrmBasic {
 
   void setTableModel(ArrayList<MemberVO> list) {
     tableModel.setRowCount(0);
-    for (MemberVO m : list) {
+    for (int i = 0; i < list.size(); i++) {
+      MemberVO m = list.get(i);
       tableModel.addRow(new String[]{
-          String.valueOf(m.getMno()), m.getName(), m.getId(), m.getPass(), m.getMobile()
+          m.getMno()+"",m.getName(), m.getId(), m.getPass(), m.getMobile()
       });
     }
     tbl.setModel(tableModel);
@@ -36,78 +37,56 @@ public class FrmMain extends FrmBasic {
     lb = new JLabel("회원 목록");
     lb.setFont(new Font("맑은 고딕", Font.BOLD, 28));
     lb.setHorizontalAlignment(JLabel.CENTER);
-
+    tbl = new JTable();
+    scp = new JScrollPane(tbl);
     tableModel = new DefaultTableModel(
         new String[]{"회원번호", "이름", "ID", "Password", "Mobile"}, 0
     );
-    tbl = new JTable(tableModel);
-    scp = new JScrollPane(tbl);
-
     btnModify = new JButton("수정");
     btnDelete = new JButton("삭제");
     btnBack = new JButton("Back");
-
     pnlSouth = new JPanel();
-
-    // 이벤트 리스너 등록
     btnBack.addActionListener(e -> {
-      dispose();
-      new FrmLogin();
+      dispose(); new FrmLogin();
     });
-
-    btnDelete.addActionListener(e -> deleteMember());
-    btnModify.addActionListener(e -> modifyMember());
-
-  }
-
-  private void deleteMember() {
-    int selectedRow = tbl.getSelectedRow();
-    if (selectedRow == -1) {
-      JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
-      return;
-    }
-
-    int choice = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "삭제 선택",
-        JOptionPane.YES_NO_OPTION);
-
-    if (choice == JOptionPane.YES_OPTION) {
-      int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
-      boolean done = new DAOMember().deleteMembers(mno);
-      if (done) {
-        JOptionPane.showMessageDialog(null, "삭제되었습니다.");
-        setTableModel(new DAOMember().getList()); // 테이블 갱신
-      } else {
-        JOptionPane.showMessageDialog(null, "삭제에 실패했습니다.");
+    btnDelete.addActionListener(e -> {
+      int selectedRow = tbl.getSelectedRow();
+      if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
+        return;
       }
-    }
-  }
+      int choice = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?", "삭제 선택",
+          JOptionPane.YES_NO_OPTION); // yes 0, no 1
+      if (choice == 0) {
+        int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
+        boolean done = new DAOMember().deleteMembers(mno);
+        if (done) {
+          JOptionPane.showMessageDialog(null, "삭제되었습니다.");
+        } else {
+          JOptionPane.showMessageDialog(null, "삭제가 안되었습니다.");
+        }
+      }
+    });
+    btnModify.addActionListener(e -> {
+      int selectedRow = tbl.getSelectedRow();
+      if (selectedRow == -1) {
+        JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
+        return;
+      }
+      int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
+      new FrmModify(mno);
 
-  private void modifyMember() {
-    int selectedRow = tbl.getSelectedRow();
-    if (selectedRow == -1) {
-      JOptionPane.showMessageDialog(null, "회원을 먼저 선택하세요");
-      return;
-    }
-
-    int mno = Integer.parseInt(tableModel.getValueAt(selectedRow, 0).toString());
-    new FrmModify(mno, this); // FrmModify에 FrmMain 인스턴스 전달
-  }
-
-  private void addMember() {
-    new FrmJoin(); // FrmJoin 창 열기
-    setTableModel(new DAOMember().getList()); // 테이블 갱신
+    });
   }
 
   @Override
   public void arrange() {
-    add(lb, BorderLayout.NORTH);
-    add(scp, BorderLayout.CENTER);
-
+    add(lb, "North");
+    add(scp, "Center");
     pnlSouth.add(btnModify);
     pnlSouth.add(btnDelete);
     pnlSouth.add(btnBack);
-
-    add(pnlSouth, BorderLayout.SOUTH);
+    add(pnlSouth, "South");
   }
 
   @Override

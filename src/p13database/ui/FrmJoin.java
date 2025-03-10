@@ -5,25 +5,20 @@ import p13database.vo.MemberVO;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class FrmModify extends FrmBasic {
+public class FrmJoin extends FrmBasic {
 
   private JPanel pnlNorth, pnlCenter, pnlSouth, pnlCNorth, pnlCCenter, pnlCSouth;
   private JTextField tfId, tfName, tfMobile;
   private JPasswordField pfPass;
-  private JButton btnModify, btnCancel;
+  private JButton btnJoin, btnCancel;
   private JLabel[] labels;
   private String[] lbArr;
-  private int mno;
 
-  public FrmModify(int mno) throws HeadlessException {
-    super("회원수정", 270, 210);
-    this.mno = mno;
-    MemberVO memberVO = new DAOMember().getMember(mno);
-    tfId.setText(memberVO.getId());
-    pfPass.setText(memberVO.getPass());
-    tfName.setText(memberVO.getName());
-    tfMobile.setText(memberVO.getMobile());
+  public FrmJoin() throws HeadlessException {
+    super("회원가입", 270, 210);
   }
 
   @Override
@@ -40,14 +35,14 @@ public class FrmModify extends FrmBasic {
     pfPass = new JPasswordField(10);
     tfName = new JTextField(10);
     tfMobile = new JTextField(10);
-    btnModify = new JButton("Modify");
+    btnJoin = new JButton("Join");
     btnCancel = new JButton("Cancel");
     for (int i = 0; i < lbArr.length; i++) {
       labels[i] = new JLabel(lbArr[i]);
       labels[i].setFont(new Font("맑은 고딕", Font.PLAIN, 18));
       labels[i].setPreferredSize(new Dimension(80, 20));
     }
-    btnModify.addActionListener(e -> {
+    btnJoin.addActionListener(e -> {
       //유효성 검사
       String id = tfId.getText();
       String pass = new String(pfPass.getPassword());
@@ -73,15 +68,16 @@ public class FrmModify extends FrmBasic {
         tfMobile.requestFocus();
         return;
       }
-      boolean result = new DAOMember().updateMembers(
+      boolean result = new DAOMember().insertMembers(
           new MemberVO(0L, id, pass, name, mobile));
       if(result) {
-        JOptionPane.showMessageDialog(null, "수정되었습니다.");
+        JOptionPane.showMessageDialog(null, "등록되었습니다.");
         tfId.setText("");pfPass.setText("");tfName.setText("");tfMobile.setText("");
       }
     });
     btnCancel.addActionListener(e -> {
       dispose();
+      new FrmLogin();
     });
   }
 
@@ -95,7 +91,7 @@ public class FrmModify extends FrmBasic {
     pnlCCenter.add(tfName);
     pnlCSouth.add(labels[3]);
     pnlCSouth.add(tfMobile);
-    pnlSouth.add(btnModify);
+    pnlSouth.add(btnJoin);
     pnlSouth.add(btnCancel);
 
     pnlCenter.add(pnlCNorth, "North");
